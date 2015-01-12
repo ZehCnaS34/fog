@@ -1,9 +1,9 @@
 require "fog/version"
 require 'fog/html'
 require 'fog/checkbox'
+require 'fog/option'
 require 'fog/text'
 require 'fog/entry'
-require 'fog/option'
 
 
 module Fog
