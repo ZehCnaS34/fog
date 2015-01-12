@@ -29,12 +29,17 @@ ff = Fog::Form.new {
   "subtitle" => "bru.",
   "fields" => [
     {
-      "question": "this is the question",
-      "help": "this may help the use",
-      "entry": {}, ##  This will be a little more in-depth
-      "required": true
+      "question"=> "this is the question",
+      "help"=> "this may help the use",
+      "entry"=> {
+        "text"=> {"name"=>"someting",
+        "placeholder"=>"something",
+        "value"=>"something",
+      }
+    }, ##  This will be a little more in-depth
+    "required"=> true
     }
-  ]
+]
 }
 ```
 
