@@ -8,7 +8,7 @@ module Fog
     end
 
     def to_html
-      opts = @options.map { |v| v.to_html }.join('')
+      opts = @options.map{ |v| v.to_html }.join('')
       "<select #{attrs(name_attr(@name))}>#{opts}</select>"
     end
   end

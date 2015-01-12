@@ -1,5 +1,5 @@
 module Fog
-  class Paragraph 
+  class Paragraph
     include Fog::Html
     attr_accessor :name, :value
     def initialize name, value

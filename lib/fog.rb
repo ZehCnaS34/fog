@@ -4,6 +4,7 @@ require 'fog/option'
 require 'fog/select'
 require 'fog/checkbox'
 require 'fog/text'
+require 'fog/paragraph'
 require 'fog/entry'
 
 

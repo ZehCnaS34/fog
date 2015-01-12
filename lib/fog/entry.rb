@@ -17,6 +17,7 @@ module Fog
     end
 
     def paragraph name, value
+      Paragraph.new(name,value)
     end
   end
 end
