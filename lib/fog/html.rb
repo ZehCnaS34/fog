@@ -15,5 +15,9 @@ module Fog
     def placeholder_attr value
       "placeholder='#{value}'"
     end
+
+    def attrs(*args)
+      args.join(' ')
+    end
   end
 end

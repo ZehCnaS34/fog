@@ -1,6 +1,5 @@
 module Fog
-  class Option
-
+  class Select
     include Fog::Html
     attr_accessor :display, :value
 
