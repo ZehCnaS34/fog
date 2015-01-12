@@ -1,18 +1,8 @@
 module Fog
   class Field
-    attr_accessor :question, :help, :entry, :required
-    include ActionView::Helpers
-
+    attr_accessor :question, :helper, :required, :entry
     def initialize h
-      @question, @help, @required=h["question"],h["help"],h["required"]
-
-
-
+      h.each{ |k,v| send("#{k}=",v) }
     end
-
-    def to_html
-
-    end
-
   end
 end
