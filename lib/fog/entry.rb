@@ -4,9 +4,9 @@ module Fog
     include ActionView::Helpers
     include ActionView::Helpers::Tags
 
-    attr_accessor :section
+    attr_accessor :section, :output_buffer
 
-    def initialize(section)
+    def initialize section
       @section = section
     end
 
@@ -30,6 +30,10 @@ module Fog
     # return html string
     def checklist
       'TODO'
+    end
+
+    def to_html
+
     end
   end
 end
