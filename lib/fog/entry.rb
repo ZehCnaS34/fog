@@ -1,6 +1,11 @@
 module Fog
   class Entry
     def select name, values, options
+      opts = []
+      options.each do |k,v|
+        Option.new(v,k)
+      end
+
     end
 
     def checkbox name, value

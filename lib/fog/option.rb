@@ -1,6 +1,5 @@
 module Fog
   class Option
-
     include Fog::Html
     attr_accessor :display, :value
 
