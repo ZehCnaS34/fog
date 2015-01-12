@@ -3,14 +3,23 @@ module Fog
     include ActionView::Helpers
     attr_accessor :title, :sub_title,:fields, :output_buffer
     def initialize h
-      h.each{ |k,v| send("#{k}=",v) }
+      # h.each{ |k,v| send("#{k}=",v) }
+      @title = h["title"]
+      @sub_title = h["sub_title"]
+      h["fields"].each do |f|
+        add_field f["question"], f["help"], f["required"], f["entry"]
+      end
     end
 
     def add_field question, help, required, entry={}
-      etype = entry.keys[0]
-      eoptions = entry[etype]
+      entry_type = entry.keys[0]
+      entry_hash = entry[entry_type]
       e = Entry.new self
-      e.send etype, eoptions
+
+      # send will try to call one of the supported
+      # entry methods
+      # e.g. text, paragraph, select
+      e.send entry_type, entry_hash
       field = Field.new({
                           :question => question,
                           :help     => help,
