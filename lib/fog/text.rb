@@ -1,5 +1,3 @@
-require 'byebug'
-
 module Fog
   class Text
     include Fog::Html
