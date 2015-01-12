@@ -1,5 +1,8 @@
+require 'byebug'
+
 module Fog
   class Text
+    include Fog::Html
     attr_accessor :name, :value, :placeholder
     def initialize name, value, placeholder
       @name = name
@@ -8,7 +11,7 @@ module Fog
     end
 
     def to_html
-      "<input type='text' #{[Attr::name(@name), Attr::placeholder(@placeholder)].join(" ")} />"
+      "<input type='text' #{[name_attr(@name),value_attr(@value),placeholder_attr(@placeholder)].join(' ')} />"
     end
   end
 end

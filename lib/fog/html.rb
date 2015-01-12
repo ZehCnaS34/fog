@@ -1,18 +1,4 @@
 module Fog
-  module Attr
-    def name n
-      "name='#{n}'"
-    end
-    def checked b
-      return "checked" if b
-    end
-    def placeholder v
-      "placeholder='#{v}'"
-    end
-    def value v
-      "value='#{v}'"
-    end
-  end
   module Html
     def name_attr name
       "name='#{name}'"
@@ -20,6 +6,14 @@ module Fog
 
     def checked_attr checked
       return "checked" if checked
+    end
+
+    def value_attr value
+      "value='#{value}'"
+    end
+
+    def placeholder_attr value
+      "placeholder='#{value}'"
     end
   end
 end
