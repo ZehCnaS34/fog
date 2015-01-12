@@ -1,7 +1,7 @@
 require "fog/version"
 require 'fog/html'
-require 'fog/checkbox'
 require 'fog/option'
+require 'fog/checkbox'
 require 'fog/text'
 require 'fog/entry'
 
