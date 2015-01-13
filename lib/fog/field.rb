@@ -1,3 +1,4 @@
+require 'byebug'
 module Fog
   class Field
     include ActionView::Helpers
@@ -7,11 +8,12 @@ module Fog
     end
 
     def to_html
-      content_tag :div, {class: "fog-question-container"}, false do
+      content_tag :div, {class: "fog-question-container"}, true do
+        # byebug
         output = ""
         output << content_tag(:p, @question, class: "fog-question")
         output << content_tag(:small, @helper, class: "fog-helper")
-        output << @entry.to_html
+        output << @entry
         output
       end
     end

@@ -12,6 +12,7 @@ module Fog
       s["sections"].each do |sec|
         f.add_section sec
       end
+      @form = f
     end
 
     def to_html

@@ -1,6 +1,7 @@
+require 'action_view'
 module Fog
   class Form
-    include Actionview::Helpers
+    include ActionView::Helpers
     attr_accessor :title, :sub_title, :sections, :output_buffer
 
     def initialize h
@@ -8,11 +9,12 @@ module Fog
     end
 
     def add_section section_hash
+      @sections = []
       @sections << Section.new(section_hash)
     end
 
     def to_html
-      content_tag :div, {class: "fog-form"}, false do
+      content_tag :div, {class: "fog-form"}, true do
         output = ""
 
         output << content_tag(:h1, @title)
