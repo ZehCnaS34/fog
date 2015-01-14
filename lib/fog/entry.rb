@@ -10,43 +10,48 @@ module Fog
 
     def initialize section
       @section = section
-      @safe_name = section["safe_name"]
+      @safe_name = section.safe_name
     end
 
     # return html string
     def text h
-      parse_hash h do |name, options|
+      single_type h do |name, options|
         TextField.new(@safe_name, name, nil, options).render
       end
     end
 
     # return html string
-    def paragraph h
-      parse_hash h do |name, options|
+    def paragraph
+      single_type h do |name, options|
         TextArea.new(@safe_name, name, nil, options).render
       end
     end
 
     # return html string
     def select h
-      Select.new(@safe_name,
-                 h["name"],
-                 :idk,
-                 h["options"],
-                {},{}).render
+      multi_type h do |name, selections, options|
+        Select.new(@safe_name,name,nil, selections,{},options).render
+      end
     end
 
     # return html string
-    def checklist o_hash
-      "todo"
+    def checkbox h
     end
 
     private
 
-    def parse_hash hash, &block
+    def single_type hash, &block
       n = hash["name"]
       hash.delete("name")
       output = block.call n, hash
+    end
+
+    def multi_type hash, &block
+      n = hash["name"]
+      hash.delete("name")
+      s = hash["options"]
+      hash.delete("options")
+      output = block.call n, s, hash
     end
   end
 end

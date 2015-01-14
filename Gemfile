@@ -4,5 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'actionview'
-gem 'rspec'
-gem 'byebyug'
+
+group :development do
+  gem 'rspec'
+  gem 'byebug'
+end

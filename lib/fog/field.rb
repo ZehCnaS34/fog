@@ -8,14 +8,11 @@ module Fog
     end
 
     def to_html
-      content_tag :div, {class: "fog-question-container"}, true do
-        # byebug
-        output = ""
-        output << content_tag(:p, @question, class: "fog-question")
-        output << content_tag(:small, @helper, class: "fog-helper")
-        output << @entry
-        output
-      end
+      output = ""
+      output << content_tag(:p, @question, class: "fog-question")
+      output << content_tag(:small, @helper, class: "fog-helper")
+      output << @entry
+      content_tag :div, output, {class: "fog-question-container"}, false 
     end
   end
 end
