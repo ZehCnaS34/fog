@@ -7,19 +7,6 @@ module Fog
     include ActionView::Helpers::Tags
     attr_accessor :section, :output_buffer
 
-    def fn_map
-      {
-       "text" => :single_type,
-       "paragrph" => :single_type
-      }
-    end
-
-    def method_missing n,*args
-      fn_map[n].to_proc.call(args[0]) do |name,options|
-        puts name,options
-      end
-    end
-
     def initialize section
       @section     = section
       @object_name = section.object_name

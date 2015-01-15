@@ -9,27 +9,43 @@
                                "question" => "what is 2 + 2",
                                "helper" => "its literally that easy",
                                "required" => true,
-                               "entry" => {
-                                           "text" => {
-                                                      "placeholder" => "something",
-                                                      "value" => "this was already entered before",
-                                                      "name" => "name"
-                                                     }
-                                          }
+                               "entries" => [
+                                             {
+                                              "type" => "text",
+                                              "placeholder" => "something",
+                                              "value" => "this is pretty cool",
+                                              "name" => "bruh"
+                                             },
+                                             {
+                                              "type" => "text",
+                                              "placeholder" => "the fix",
+                                              "name" => "dafix"
+                                             },
+                                            ]
                               },{
                                  "question" => "what is that good good",
                                  "helper" => "only real G's know",
                                  "required" => true,
-                                 "entry" => {
-                                             "select" => {
-                                                          "name" => "name",
-                                                          "options" => {
-                                                                        "Kush" => "k",
-                                                                        "Blue Dream" => "bd",
-                                                                        "Haze" => "h"
-                                                                       }
-                                                         }
-                                            }
+                                 "entries" => [
+                                               {
+                                                "type" => "checkbox",
+                                                "label" => "Kush",
+                                                "name" => "kush"
+                                               },
+                                               {
+                                                "type" => "checkbox",
+                                                "label" => "Blue Dream",
+                                                "name" => "bd"
+                                               },
+                                               {
+                                                "type" => "select",
+                                                "name" => "something",
+                                                "options" => {
+                                                              "Display" => "d",
+                                                              "Look" => "l"
+                                                             }
+                                               }
+                                              ]
                                 }]
                 }]
 }

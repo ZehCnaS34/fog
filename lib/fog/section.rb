@@ -1,7 +1,7 @@
 require 'byebug'
 
 module Fog
-  class Section < Base
+  class Section
     include ActionView::Helpers
     attr_accessor :title,:sub_title,:fields,:object_name,:output_buffer
     def initialize h
@@ -44,12 +44,13 @@ module Fog
 
     def finalize_entries(entries)
       e = Entry.new self
-      entries.map { |type,options| e.send(type,options) }.join("<br/>")
+      entries.map { |ent|
+        e.send(ent[:elt], ent[:options])
+      }.join("<br/>")
     end
 
     ## parse entries
     def parse_entries entries
-      byebug
       entries.map{|k,v| {:elt=>k,:options=>v} }
     end
   end
