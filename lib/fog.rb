@@ -1,5 +1,5 @@
 require "fog/version"
-require 'fog/entry_parser'
+require 'fog/formater'
 require 'fog/entry'
 
 module Fog

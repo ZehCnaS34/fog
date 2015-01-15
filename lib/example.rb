@@ -40,7 +40,7 @@
                                                {
                                                 "type" => "select",
                                                 "name" => "something",
-                                                "options" => {
+                                                "choices" => {
                                                               "Display" => "d",
                                                               "Look" => "l"
                                                              }
