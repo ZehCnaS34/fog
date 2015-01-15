@@ -7,8 +7,7 @@
                  "sub_title" => "section sub title",
                  "fields" => [{
                                "question" => "what is 2 + 2",
-                               "helper" => "its literally that easy",
-                               "required" => true,
+                               "help" => "its literally that easy",
                                "entries" => [
                                              {
                                               "type" => "text",
@@ -24,8 +23,7 @@
                                             ]
                               },{
                                  "question" => "what is that good good",
-                                 "helper" => "only real G's know",
-                                 "required" => true,
+                                 "help" => "only real G's know",
                                  "entries" => [
                                                {
                                                 "type" => "checkbox",

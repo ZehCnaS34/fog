@@ -5,25 +5,29 @@ class T
 end
 
 RSpec.describe Fog::Formater do
+  before :each do
+    @p = T.new
+    @valid_entry = {
+                    "type"        => "text",
+                    "placeholder" => "something",
+                    "value"       => "this is pretty cool",
+                    "name"        => "bruh"
+                   }
+    @valid_choice_entry = {
+                           "type"        => "select",
+                           "name"        => "bruh",
+                           "choices"     => {
+                                             "Display" => "d",
+                                             "Look"    => "l"
+                                            }
+                          }
+    @invalid_entry = {
+                      "placeholder" => "something",
+                      "value"       => "this is pretty cool",
+                     }
+  end
 
   describe "when valid hash." do
-    before :each do
-      @p = T.new
-      @valid_entry = {
-                "type"        => "text",
-                "placeholder" => "something",
-                "value"       => "this is pretty cool",
-                "name"        => "bruh"
-               }
-      @valid_choice_entry = {
-                       "type"        => "select",
-                       "name"        => "bruh",
-                       "choices"     => {
-                                         "Display" => "d",
-                                         "Look"    => "l"
-                                        }
-                      }
-    end
 
 
     context "#format_entry" do
@@ -56,6 +60,11 @@ RSpec.describe Fog::Formater do
 
       end
     end
+  end
 
+  describe "when invalid hash" do
+    it "should throw an error" do
+      expect {@p.format_entry(@invalid_entry)}.to raise_error
+    end
   end
 end
