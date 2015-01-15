@@ -14,5 +14,9 @@ module Fog
         field.clone ## i might take this out.
       }
     end
+
+    def generate
+      content_tag :div, class: "fog-section"
+    end
   end
 end

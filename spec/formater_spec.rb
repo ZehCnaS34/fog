@@ -34,7 +34,7 @@ RSpec.describe Fog::Formater do
       it "place tag_type, name, and option into an array [tag_type,name,options]" do
 
         ## assignments
-        tag_type,name,options = @p.format_entry(@valid_entry)
+        tag_type,name,options,choices = @p.format_entry(@valid_entry)
 
         ## expectations
         expect(tag_type).to eq("text")
@@ -43,23 +43,25 @@ RSpec.describe Fog::Formater do
                                "value"       => "this is pretty cool",
                                "placeholder" => "something",
                               })
+        expect(choices).to be(nil)
+
+      end
+
+      context "with_choices" do
+        it "" do
+          ## assignments
+          tag_type,name,options,choices= @p.format_entry(@valid_choice_entry)
+          ## expectations
+          expect(choices).to        eq({"Display" => "d","Look" => "l"})
+          expect(options).to        eq({})
+          expect(tag_type).to       eq("select")
+          expect(name).to           eq("bruh")
+
+        end
       end
     end
 
 
-    context "#with_choices" do
-      it "should extract the choices like so => [choices, hash]" do
-        ## assignments
-        tag_type,name,choices,options = @p.format_entry(@valid_choice_entry,true)
-
-        ## expectations
-        expect(choices).to        eq({"Display" => "d","Look" => "l"})
-        expect(options).to        eq({})
-        expect(tag_type).to       eq("select")
-        expect(name).to           eq("bruh")
-
-      end
-    end
   end
 
   describe "when invalid hash" do

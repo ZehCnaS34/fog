@@ -2,7 +2,7 @@ require 'fog'
 
 RSpec.describe Fog::Entry do
   before :each do
-    @entry = Fog::Entry.new
+    @entry = Fog::Entry.new("base name")
     @text_field = {
                    "type" => "text",
                    "placeholder" => "something",
@@ -20,6 +20,7 @@ RSpec.describe Fog::Entry do
                                        "value" => "this is pretty cool",
                                        "placeholder" => "something"
                                       })
+      expect(@entry.choices).to eq nil
     end
 
   end

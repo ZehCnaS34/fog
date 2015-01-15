@@ -41,7 +41,8 @@
                                                 "choices" => {
                                                               "Display" => "d",
                                                               "Look" => "l"
-                                                             }
+                                                             },
+                                                "class" => "awesome"
                                                }
                                               ]
                                 }]

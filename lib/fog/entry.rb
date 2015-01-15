@@ -2,7 +2,7 @@ require 'byebug'
 require 'action_view'
 
 module Fog
-  class Entry
+  class Entry < HtmlGenerator
     include ActionView::Helpers::Tags
     include Fog::Formater
 
@@ -12,7 +12,6 @@ module Fog
     # Choices [Hash] key=[Display], value=[key]
     # attributes [Hash]
     attr_reader :base,:tag,:name,:choices,:attributes,:hash
-    attr_accessor :output_buffer
 
     def initialize(base_name)
       @base = base_name
@@ -28,6 +27,7 @@ module Fog
     end
 
     def format(entry)
+      # choices does not always have a value
       @hash = entry
       @tag,@name,@attributes,@choices = format_entry entry
       self
@@ -44,7 +44,7 @@ module Fog
       if type == :base
         obj.new(@base,@name,nil, @attributes)
       elsif type == :check
-        obj.new(@base,@name,nil,true,false,{},@attriubtes)
+        obj.new(@base,@name,nil,true,false,@attriubtes)
       elsif type == :coll
         obj.new(@base,@name,nil,@choices,{},@attriubtes)
       end
