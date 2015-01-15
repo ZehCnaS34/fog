@@ -14,7 +14,7 @@ module Fog
     attr_reader :base,:tag,:name,:choices,:attributes
     attr_accessor :output_buffer
 
-    def intitialize(base_name)
+    def initialize(base_name)
       @base = base_name
     end
 
@@ -29,6 +29,7 @@ module Fog
 
     def format(entry)
       @tag,@name,@attributes = format_entry entry
+      self
     end
 
     def generate

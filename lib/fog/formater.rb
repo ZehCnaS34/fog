@@ -22,5 +22,15 @@ module Fog
       entries = hash["entries"]
       [question,help,entries]
     end
+
+    def format_section hash
+      raise "no title" if not hash.has_key?("title")
+      raise "invalid error" if not hash["title"].is_a?(String)
+      object_name = hash["object_name"]
+      title       = hash["title"]
+      sub_title   = hash["sub_title"]
+      fields      = hash["fields"]
+      [title, sub_title, object_name, fields]
+    end
   end
 end
