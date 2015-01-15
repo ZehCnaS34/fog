@@ -1,9 +1,6 @@
 module Fog
-  class Field
-    include Fog::Formater
-    include ActionView::Helpers
+  class Field < HtmlGenerator
     attr_reader :question, :help, :entries
-    attr_accessor :output_buffer
 
     def initialize h
       @question, @help, @entries = format_field h

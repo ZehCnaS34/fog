@@ -1,8 +1,7 @@
 module Fog
-  class Section
-    include Formater
+  class Section < HtmlGenerator
     attr_reader :title, :subtitle, :fields, :safe_name
-    attr_accessor :output_buffer
+
     def initialize hash
       @title,@sub_title,@object_name,@fields=format_section hash
     end
@@ -11,7 +10,7 @@ module Fog
       @fields = @fields.map { |f|
         field = Field.new(f)
         field.serialize_entries(@safe_name)
-        field.clone ## i might take this out.
+        field.clone
       }
     end
 
