@@ -15,6 +15,7 @@ module Fog
         e.format(entry).clone
       }
     end
+
     def generate
       content_tag :div, class: "fog-field" do
         output = ""

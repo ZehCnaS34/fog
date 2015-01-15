@@ -35,7 +35,7 @@ module Fog
 
     def generate
       gen = entry_type(*tag_map[@tag.to_sym])
-      gen.render
+      gen.render.html_safe
     end
 
     private
@@ -46,8 +46,7 @@ module Fog
       elsif type == :check
         obj.new(@base,@name,nil,true,false,{},@attriubtes)
       elsif type == :coll
-        _,_,@choices,_ = format_entry @hash
-        obj.new(@base,@name,nil,@choices,@attriubtes)
+        obj.new(@base,@name,nil,@choices,{},@attriubtes)
       end
     end
 
