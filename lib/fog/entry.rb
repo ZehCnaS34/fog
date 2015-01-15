@@ -5,37 +5,39 @@ module Fog
   class Entry
     include ActionView::Helpers
     include ActionView::Helpers::Tags
-
     attr_accessor :section, :output_buffer
 
     def initialize section
       @section = section
-      @safe_name = section.safe_name
+      @object_name = section.object_name
     end
 
     # return html string
     def text h
       single_type h do |name, options|
-        TextField.new(@safe_name, name, nil, options).render
+        TextField.new(@object_name, name, nil, options).render
       end
     end
 
     # return html string
     def paragraph
       single_type h do |name, options|
-        TextArea.new(@safe_name, name, nil, options).render
+        TextArea.new(@object_name, name, nil, options).render
       end
     end
 
     # return html string
     def select h
       multi_type h do |name, selections, options|
-        Select.new(@safe_name,name,nil, selections,{},options).render
+        Select.new(@object_name,name,nil, selections,{},options).render
       end
     end
 
     # return html string
     def checkbox h
+      single_type h do |name, options|
+        CheckBox.new(@object_name, name,nil true, false, {}, options).render
+      end
     end
 
     private
@@ -43,7 +45,7 @@ module Fog
     def single_type hash, &block
       n = hash["name"]
       hash.delete("name")
-      output = block.call n, hash
+      block.call n, hash
     end
 
     def multi_type hash, &block
@@ -51,7 +53,7 @@ module Fog
       hash.delete("name")
       s = hash["options"]
       hash.delete("options")
-      output = block.call n, s, hash
+      block.call n, s, hash
     end
   end
 end

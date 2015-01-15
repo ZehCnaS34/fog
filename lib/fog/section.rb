@@ -1,28 +1,25 @@
 require 'byebug'
+
 module Fog
   class Section < Base
     include ActionView::Helpers
-    attr_accessor :title,:sub_title,:fields,:safe_name,:output_buffer
+    attr_accessor :title,:sub_title,:fields,:object_name,:output_buffer
     def initialize h
       ## When passing a hash
       # h.each{ |k,v| send("#{k}=",v) }
       @title = h["title"]
       @fields = []
       @sub_title = h["sub_title"]
-      @safe_name = h["safe_name"]
+      @object_name = h["object_name"]
       h["fields"].each do |f|
-        add_field f["question"], f["helper"], f["required"], f["entry"]
+        add_field f["question"], f["helper"], f["entries"]
       end
     end
 
-    def add_field question, helper, required, entry={}
-
-      # entry_type = entry.keys[0]
-      # entry_hash = entry[entry_type]
-      entry_type,entry_hash = parse_entry entry
+    def add_field question, helper, entries={}
+      entry_multi_array = parse_entries entries
 
       e = Entry.new self
-
       # send will try to call one of the supported
       # entry methods
       # e.g. text, paragraph, select
@@ -30,7 +27,7 @@ module Fog
         :question => question,
         :helper   => helper,
         :required => required,
-        :entry    => e.send(entry_type, entry_hash)
+        :entries  => e.send(entry_type, entry_hash)
       })
 
       @fields << field
@@ -48,11 +45,10 @@ module Fog
 
     private
 
-    def parse_entry h
-      e_type = h.keys[0]
-      e_hash = h[e_type]
-      [e_type, e_hash]
+    ## parse entries
+    def parse_entries entries
+      byebug
+      entries.map{|k,v| [k,v] }
     end
-
   end
 end

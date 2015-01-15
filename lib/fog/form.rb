@@ -1,4 +1,5 @@
 require 'action_view'
+
 module Fog
   class Form
     include ActionView::Helpers
@@ -18,12 +19,14 @@ module Fog
         output = ""
         output << content_tag(:h1, @title)
         output << content_tag(:h2, @sub_title)
-
-        output << form_for(:fog_form, class: "something") do
-          @sections.map{ |s| s.to_html }.join(' ').html_safe
-        end.html_safe
-
+        output << form_for(:fog_form, build_sections, class: "something")
         output.html_safe
+      end
+
+      private
+
+      def build_sections
+        @sections.map{ |s| s.to_html }.join(' ')
       end
     end
   end
