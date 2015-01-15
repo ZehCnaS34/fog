@@ -17,19 +17,16 @@ module Fog
     end
 
     def add_field question, helper, entries={}
-      entry_multi_array = parse_entries entries
-
-      e = Entry.new self
+      ema = parse_entries(entries)
+      # create a new entry instance
       # send will try to call one of the supported
       # entry methods
       # e.g. text, paragraph, select
       field = Field.new({
-        :question => question,
-        :helper   => helper,
-        :required => required,
-        :entries  => e.send(entry_type, entry_hash)
-      })
-
+                         :question => question,
+                         :helper   => helper,
+                         :entries  => finalize_entries(ema)
+                        })
       @fields << field
     end
 
@@ -45,10 +42,15 @@ module Fog
 
     private
 
+    def finalize_entries(entries)
+      e = Entry.new self
+      entries.map { |type,options| e.send(type,options) }.join("<br/>")
+    end
+
     ## parse entries
     def parse_entries entries
       byebug
-      entries.map{|k,v| [k,v] }
+      entries.map{|k,v| {:elt=>k,:options=>v} }
     end
   end
 end

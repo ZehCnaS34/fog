@@ -3,6 +3,7 @@ require 'fog/entry'
 require 'fog/field'
 require 'fog/section'
 require 'fog/form'
+require 'fog/base'
 
 module Fog
   class Core
