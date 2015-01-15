@@ -1,18 +1,16 @@
 module Fog
   module Formater
-    def format_entry hash, with_choices=false
-      raise "fuck" if not hash.has_key?("type")
+    def format_entry hash
+      raise "no input type given" if not hash.has_key?("type")
       tag_type = hash["type"]
       name     = hash["name"]
-      if with_choices
-        choices = hash["choices"]
-        hash.delete("choices")
-      end
+      choices  = hash["choices"]
+
+      hash.delete("choices")
       hash.delete('type')
       hash.delete('name')
       options  = hash
-      return [tag_type,name,choices, options] if with_choices
-      [tag_type,name,options]
+      [tag_type,name,options,choices]
     end
 
     def format_field hash

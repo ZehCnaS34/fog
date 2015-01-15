@@ -4,9 +4,11 @@ module Fog
     include ActionView::Helpers
     attr_reader :question, :help, :entries
     attr_accessor :output_buffer
+
     def initialize h
       @question, @help, @entries = format_field h
     end
+
     def serialize_entries section_name
       e = Entry.new(section_name)
       @entries = @entries.map { |entry|

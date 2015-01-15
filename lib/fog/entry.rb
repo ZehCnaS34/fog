@@ -29,7 +29,7 @@ module Fog
 
     def format(entry)
       @hash = entry
-      @tag,@name,@attributes = format_entry entry
+      @tag,@name,@attributes,@choices = format_entry entry
       self
     end
 
