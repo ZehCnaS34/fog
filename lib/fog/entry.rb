@@ -11,7 +11,7 @@ module Fog
     # name [String]
     # Choices [Hash] key=[Display], value=[key]
     # attributes [Hash]
-    attr_reader :base,:tag,:name,:choices,:attributes
+    attr_reader :base,:tag,:name,:choices,:attributes,:hash
     attr_accessor :output_buffer
 
     def initialize(base_name)
@@ -28,6 +28,7 @@ module Fog
     end
 
     def format(entry)
+      @hash = entry
       @tag,@name,@attributes = format_entry entry
       self
     end
@@ -45,6 +46,7 @@ module Fog
       elsif type == :check
         obj.new(@base,@name,nil,true,false,{},@attriubtes)
       elsif type == :coll
+        _,_,@choices,_ = format_entry @hash
         obj.new(@base,@name,nil,@choices,@attriubtes)
       end
     end
