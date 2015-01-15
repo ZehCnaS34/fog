@@ -2,7 +2,7 @@ require 'rspec'
 require 'fog'
 
 RSpec.describe Fog::EntryParser do
-  describe "when given a valid hash" do
+  describe "when valid hash." do
     before :each do
       @entry = {
                 "type" => "text",
@@ -12,7 +12,16 @@ RSpec.describe Fog::EntryParser do
                }
     end
 
-    it "should properly place, name and option into an array accordingly"
+    it "should properly place, name and option into an array [tag_type,name,options]" do
+      tag_type,name,options = Fog::EntryParser.parse_entry @entry
+
+      expect(tag_type).to be("text")
+      expect(name).to be("bruh")
+      expect(options).to be({
+                             "placeholder"=>"something",
+                             "value"=>"this is pretty cool"
+                            })
+    end
 
   end
 end
