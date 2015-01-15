@@ -1,9 +1,6 @@
 require "fog/version"
+require 'fog/entry_parser'
 require 'fog/entry'
-require 'fog/field'
-require 'fog/section'
-require 'fog/form'
-require 'fog/base'
 
 module Fog
   class Core
