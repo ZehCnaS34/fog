@@ -14,15 +14,6 @@ module Fog
       @base = base_name
     end
 
-    def tag_map
-      {
-       :text      => [TextField ,  :base],
-       :textarea  => [TextArea  ,  :base],
-       :checkbox  => [CheckBox  , :check],
-       :select    => [Select    ,  :coll],
-      }
-    end
-
     def format(entry)
       # choices does not always have a value
       @hash = entry
