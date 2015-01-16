@@ -3,15 +3,12 @@ require 'action_view'
 
 module Fog
   class Entry < HtmlGenerator
-    include ActionView::Helpers::Tags
-    include Fog::Formater
-
     # base [String]
     # tag [String]
     # name [String]
-    # Choices [Hash] key=[Display], value=[key]
+    # choices [Hash] key=[Display], value=[key]
     # attributes [Hash]
-    attr_reader :base,:tag,:name,:choices,:attributes,:hash
+    attr_reader :base,:tag,:name,:attributes,:choices
 
     def initialize(base_name)
       @base = base_name
@@ -46,7 +43,9 @@ module Fog
       elsif type == :check
         obj.new(@base,@name,nil,true,false,@attriubtes)
       elsif type == :coll
-        obj.new(@base,@name,nil,@choices,{},@attriubtes)
+        output = obj.new(@base,@name,nil,@choices,{},@attriubtes)
+        byebug
+        output
       end
     end
 

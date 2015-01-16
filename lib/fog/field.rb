@@ -3,7 +3,7 @@ module Fog
     attr_reader :question, :help, :entries
 
     def initialize h
-      @question, @help, @entries = format_field h
+      @question,@help,@entries = format_field h
     end
 
     def serialize_entries section_name
@@ -19,7 +19,7 @@ module Fog
         output << content_tag(:p, @qeustion)
         output << content_tag(:small, @help)
         output << content_tag(:div, class: "fog-entries") do
-          @entries.map{ |k| k.generate }.join("<br/>").html_safe
+          @entries.map{ |e| e.generate }.join("<br/>").html_safe
         end
         output.html_safe
       end
