@@ -18,10 +18,11 @@ module Fog
       content_tag :div, class: "fog-section" do
         output = ""
         output << content_tag(:h2, @title)
-        output << content_tag(:h3, @subtitle)
+        output << content_tag(:h3, @sub_title)
         output << content_tag(:div, class: "fog-field") do
-          @fields.map{ |f| f.generat }.join('').html_safe
+          @fields.map{ |f| f.generate }.join('').html_safe
         end
+        output << submit_tag
         output.html_safe
       end
     end

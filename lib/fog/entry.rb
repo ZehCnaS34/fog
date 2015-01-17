@@ -30,10 +30,6 @@ module Fog
       else
         gen[@attributes].render
       end
-
-
-      # gen = entry_type(*tag_map[@tag.to_sym])
-      # gen.render.html_safe
     end
   end
 end
