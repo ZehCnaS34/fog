@@ -20,11 +20,23 @@ module Fog
 
     def tag_map
       {
-       :text      => [TextField ,  :base],
-       :textarea  => [TextArea  ,  :base],
-       :checkbox  => [CheckBox  , :check],
-       :select    => [Select    ,  :coll],
+        "text"      => TextField,
+        "textarea"  => TextArea,
+        "checkbox"  => CheckBox,
+        "select"    => Select
       }
+    end
+
+    def arg_map obj,base,name
+      obj_map = {
+        TextField => Proc.new { |attrs|    obj.new(base,name,nil,attrs) },
+        TextArea  => Proc.new { |attrs|    obj.new(base,name,nil,attrs) } ,
+        CheckBox  => Proc.new { |attrs|    obj.new(base,name,nil,true,false,attrs) },
+        Select    => Proc.new { |m, attrs| obj.new(base,name,nil,m,{},attrs) }
+      }
+
+      obj_map[obj]
+
     end
   end
 end

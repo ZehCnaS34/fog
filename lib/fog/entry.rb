@@ -22,20 +22,18 @@ module Fog
     end
 
     def generate
-      gen = entry_type(*tag_map[@tag.to_sym])
-      gen.render.html_safe
-    end
+      obj = tag_map[@tag]
+      gen = arg_map(obj,@base,@name)
 
-    private
-
-    def entry_type obj,type
-      if type    == :base
-        obj.new(@base,@name,nil,@attributes)
-      elsif type == :check
-        obj.new(@base,@name,nil,true,false,@attriubtes)
-      elsif type == :coll
-        obj.new(@base,@name,nil,@choices,{},@attriubtes)
+      if @choices
+        gen[@choices,@attributes].render
+      else
+        gen[@attributes].render
       end
+
+
+      # gen = entry_type(*tag_map[@tag.to_sym])
+      # gen.render.html_safe
     end
   end
 end
