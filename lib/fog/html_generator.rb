@@ -8,10 +8,6 @@ module Fog
 
     attr_accessor :output_buffer
 
-
-    def parse
-    end
-
     def generate
       raise "no implementation"
     end
@@ -28,15 +24,12 @@ module Fog
     end
 
     def arg_map obj,base,name
-      obj_map = {
-        TextField => Proc.new { |attrs|    obj.new(base,name,nil,attrs) },
-        TextArea  => Proc.new { |attrs|    obj.new(base,name,nil,attrs) } ,
-        CheckBox  => Proc.new { |attrs|    obj.new(base,name,nil,true,false,attrs) },
-        Select    => Proc.new { |m, attrs| obj.new(base,name,nil,m,{},attrs) }
-      }
-
-      obj_map[obj]
-
+      {
+        TextField => Proc.new { |attrs| obj.new(base,name,nil,attrs) },
+        TextArea  => Proc.new { |attrs| obj.new(base,name,nil,attrs) } ,
+        CheckBox  => Proc.new { |attrs| obj.new(base,name,nil,true,false,attrs) },
+        Select    => Proc.new { |m,  a| obj.new(base,name,nil,m,{},a) }
+      }[obj]
     end
   end
 end
