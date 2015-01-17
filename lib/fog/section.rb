@@ -3,7 +3,7 @@ module Fog
     attr_reader :title, :sub_title, :fields, :safe_name
 
     def initialize hash
-      @title,@sub_title,@object_name,@fields=format_section hash
+      @title,@sub_title,@safe_name,@fields=format_section hash
     end
 
     def serialize_fields

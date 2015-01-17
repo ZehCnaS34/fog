@@ -2,7 +2,7 @@
   "title" => "this is the title",
   "sub_title" => "this is the subtitle",
   "sections" => [{
-                   "object_name" => "objct",
+                   "object_name" => "object",
                    "title" => "section title",
                    "sub_title" => "section sub title",
                    "fields" => [{

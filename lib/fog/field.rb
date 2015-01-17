@@ -16,7 +16,7 @@ module Fog
     def generate
       content_tag :div, class: "fog-field" do
         output = ""
-        output << content_tag(:p, @qeustion)
+        output << content_tag(:p, @question)
         output << content_tag(:small, @help)
         output << content_tag(:div, class: "fog-entries") do
           @entries.map{ |e| e.generate }.join("<br/>").html_safe
