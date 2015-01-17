@@ -13,7 +13,8 @@
                                                   "type" => "text",
                                                   "placeholder" => "something",
                                                   "value" => "this is pretty cool",
-                                                  "name" => "bruh"
+                                                  "name" => "bruh",
+
                                                 },
                                                 {
                                                   "type" => "text",
@@ -27,12 +28,12 @@
                                   "entries" => [
                                                 {
                                                   "type" => "checkbox",
-                                                  "label" => "Kush",
-                                                  "name" => "kush"
+                                                  "label" => "b",
+                                                  "name" => "sd"
                                                 },
                                                 {
                                                   "type" => "checkbox",
-                                                  "label" => "Blue Dream",
+                                                  "label" => " Dream",
                                                   "name" => "bd"
                                                 },
                                                 {

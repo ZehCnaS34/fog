@@ -17,9 +17,13 @@ module Fog
     def generate
       content_tag :div, class: "fog-form" do
         output = ""
-        output << content_tag(:h2, @title)
-        output << content_tag(:h3, @sub_title)
-        output << content_tag(:div, class: "fog-section") do
+        output << content_tag(:div, class: "fog-form-header") do
+          o = ""
+          o << content_tag(:h2, @title)
+          o << content_tag(:h3, @sub_title)
+          o.html_safe
+        end
+        output << content_tag(:div, class: "fog-sections") do
           @sections.map{ |f| f.generate }.join('').html_safe
         end
         output.html_safe
