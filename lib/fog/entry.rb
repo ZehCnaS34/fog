@@ -29,16 +29,13 @@ module Fog
     private
 
     def entry_type obj,type
-      if type == :base
-        obj.new(@base,@name,nil, @attributes)
+      if type    == :base
+        obj.new(@base,@name,nil,@attributes)
       elsif type == :check
         obj.new(@base,@name,nil,true,false,@attriubtes)
       elsif type == :coll
-        output = obj.new(@base,@name,nil,@choices,{},@attriubtes)
-        byebug
-        output
+        obj.new(@base,@name,nil,@choices,{},@attriubtes)
       end
     end
-
   end
 end

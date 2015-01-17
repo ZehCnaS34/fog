@@ -29,7 +29,6 @@ RSpec.describe Fog::Formater do
 
   describe "when valid hash." do
 
-
     context "#format_entry" do
       it "place tag_type, name, and option into an array [tag_type,name,options]" do
 

@@ -5,7 +5,19 @@ module Fog
     include Fog::Formater
     include ActionView::Helpers
     include ActionView::Helpers::Tags
+
     attr_accessor :output_buffer
+
+
+    def parse
+    end
+
+    def generate
+      raise "no implementation"
+    end
+
+    private
+
     def tag_map
       {
        :text      => [TextField ,  :base],
@@ -13,9 +25,6 @@ module Fog
        :checkbox  => [CheckBox  , :check],
        :select    => [Select    ,  :coll],
       }
-    end
-    def generate
-      raise "no implementation"
     end
   end
 end
