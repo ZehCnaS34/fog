@@ -2,58 +2,40 @@ require 'byebug'
 require 'action_view'
 
 module Fog
-  class Entry
-    include ActionView::Helpers
-    include ActionView::Helpers::Tags
-    attr_accessor :section, :output_buffer
+  class Entry < HtmlGenerator
+    # base [String]
+    # tag [String]
+    # name [String]
+    # choices [Hash] key=[Display], value=[key]
+    # attributes [Hash]
+    attr_reader :base,:tag,:name,:attributes,:choices
 
-    def initialize section
-      @section     = section
-      @object_name = section.object_name
+    def initialize(base_name)
+      @base = base_name
     end
 
-    # return html string
-    def text h
-      single_type h do |name, options|
-        TextField.new(@object_name, name, nil, options).render
-      end
+    def format(entry)
+      # choices does not always have a value
+      @hash = entry
+      @tag,@name,@attributes,@choices = format_entry entry
+      self
     end
 
-    # return html string
-    def paragraph
-      single_type h do |name, options|
-        TextArea.new(@object_name, name, nil, options).render
-      end
-    end
-
-    # return html string
-    def select h
-      multi_type h do |name, selections, options|
-        Select.new(@object_name,name,nil, selections,{},options).render
-      end
-    end
-
-    # return html string
-    def checkbox h
-      single_type(h) { |name, options|
-        CheckBox.new(@object_name,name,nil,true,false,{},options).render
-      }
+    def generate
+      gen = entry_type(*tag_map[@tag.to_sym])
+      gen.render.html_safe
     end
 
     private
 
-    def single_type hash, &block
-      n = hash["name"]
-      hash.delete("name")
-      block.call n, hash
-    end
-
-    def multi_type hash, &block
-      n = hash["name"]
-      hash.delete("name")
-      s = hash["options"]
-      hash.delete("options")
-      block.call n, s, hash
+    def entry_type obj,type
+      if type    == :base
+        obj.new(@base,@name,nil,@attributes)
+      elsif type == :check
+        obj.new(@base,@name,nil,true,false,@attriubtes)
+      elsif type == :coll
+        obj.new(@base,@name,nil,@choices,{},@attriubtes)
+      end
     end
   end
 end

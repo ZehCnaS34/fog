@@ -1,7 +1,13 @@
-{
- "title" => "this is the title",
- "sub_title" => "this is the subtitle",
- "sections" => [{
+require 'fog'
+
+class T
+  include Fog::Formater
+end
+
+RSpec.describe Fog::Formater do
+  before :each do
+    @f = T.new
+    @section = {
                  "object_name" => "objct",
                  "title" => "section title",
                  "sub_title" => "section sub title",
@@ -46,5 +52,9 @@
                                                }
                                               ]
                                 }]
-                }]
-}
+                }
+  end
+
+  context "when given valid text"
+
+end

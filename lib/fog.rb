@@ -1,28 +1,25 @@
 require "fog/version"
+require 'fog/formater'
+require 'fog/html_generator'
 require 'fog/entry'
 require 'fog/field'
 require 'fog/section'
-require 'fog/form'
-require 'fog/base'
 
 module Fog
   class Core
 
-    attr_accessor :form, :output_buffer
-
-    def initialize s
-
-      f = Form.new(title: s["title"], sub_title: s["sub_title"])
-
-      s["sections"].each do |sec|
-        f.add_section sec
-      end
-
-      @form = f
+    def initialize
+      @e = Fog::Entry.new("awesome")
+      @e.format({
+                 "type" => "checkbox",
+                 "label" => "Kush",
+                 "name" => "kush"
+                })
     end
 
-    def to_html
-      @form.to_html
+    def debug
+      @e.generate
     end
+
   end
 end
